@@ -1,19 +1,31 @@
 class Solution:
     def totalFruit(self, fruits):
+        a = b = -1
+        count_a = count_b = 0
         left = 0
-        count = {}
         ans = 0
 
         for right in range(len(fruits)):
-            count[fruits[right]] = count.get(fruits[right], 0) + 1
+            if fruits[right] == a:
+                count_a += 1
 
-            while len(count) > 2:
-                count[fruits[left]] -= 1
+            elif fruits[right] == b:
+                count_b += 1
 
-                if count[fruits[left]] == 0:
-                    del count[fruits[left]]
+            else:
+                while count_a > 0 and count_b > 0:
+                    if fruits[left] == a:
+                        count_a -= 1
+                    else:
+                        count_b -= 1
+                    left += 1
 
-                left += 1
+                if count_a == 0:
+                    a = fruits[right]
+                    count_a = 1
+                else:
+                    b = fruits[right]
+                    count_b = 1
 
             ans = max(ans, right - left + 1)
 
