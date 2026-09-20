@@ -1,7 +1,7 @@
 class Solution(object):
     def threeSum(self, nums):
         nums.sort()
-        result = []
+        list = []
 
         for i in range(len(nums)):
             if i > 0 and nums[i] == nums[i - 1]:
@@ -14,7 +14,7 @@ class Solution(object):
                 total = nums[i] + nums[left] + nums[right]
 
                 if total == 0:
-                    result.append([nums[i], nums[left], nums[right]])
+                    list.append([nums[i], nums[left], nums[right]])
 
                     left += 1
                     right -= 1
@@ -30,4 +30,4 @@ class Solution(object):
                 else:
                     right -= 1
 
-        return result
+        return list
